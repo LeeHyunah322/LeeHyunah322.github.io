@@ -786,7 +786,20 @@
       </div>
     </section>
   </main>
-
+<!-- ===== Lightbox ===== -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-inner" role="dialog" aria-modal="true">
+    <img id="lightboxImg" class="lightbox-img" src="" alt="확대 이미지">
+    <div class="lightbox-bar">
+      <div class="lb-left">
+        <button class="lb-btn" id="lbPrev" type="button">←</button>
+        <button class="lb-btn" id="lbNext" type="button">→</button>
+        <span class="lb-cap" id="lbCap"></span>
+      </div>
+      <button class="lb-btn" id="lbClose" type="button">닫기</button>
+    </div>
+  </div>
+</div>
   <!-- ===== Modal Backdrop ===== -->
   <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -1108,19 +1121,6 @@ document.addEventListener("keydown", (e)=>{
   if(e.key === "ArrowRight") stepLightbox(1);
 });
 </script>
-<!-- ===== Lightbox ===== -->
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <div class="lightbox-inner" role="dialog" aria-modal="true">
-    <img id="lightboxImg" class="lightbox-img" src="" alt="확대 이미지">
-    <div class="lightbox-bar">
-      <div class="lb-left">
-        <button class="lb-btn" id="lbPrev" type="button">←</button>
-        <button class="lb-btn" id="lbNext" type="button">→</button>
-        <span class="lb-cap" id="lbCap"></span>
-      </div>
-      <button class="lb-btn" id="lbClose" type="button">닫기</button>
-    </div>
-  </div>
-</div>
+
 </body>
 </html>
