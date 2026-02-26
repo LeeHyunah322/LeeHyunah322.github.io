@@ -344,6 +344,16 @@
   .box ul{padding-left:18px}
   .box li{margin:6px 0;color:var(--muted);line-height:1.6}
 
+.thumb{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:14px;
+  border:1px solid var(--line);
+  margin-bottom:12px;
+  background: rgba(255,255,255,.03);
+}
+  
   /* ===== Responsive ===== */
   @media (max-width: 900px){
     .hero, .contact{grid-template-columns: 1fr}
@@ -562,6 +572,7 @@
         <div class="projects-grid">
           <!-- V!VA PARK -->
           <div class="card p-card reveal" data-modal="vivapark">
+            <img class="thumb" src="viva_event_resv.png" alt="V!VA PARK 예약 화면">
             <div class="p-title">V!VA PARK <span class="badge">JSP/Servlet</span></div>
             <div class="p-desc">테마파크 공연/행사 조회와 예약, 관리자 운영 기능을 포함한 웹 서비스</div>
             <div class="badges">
