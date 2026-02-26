@@ -366,6 +366,18 @@
   border:1px solid var(--line);
   background: rgba(255,255,255,.03);
 }
+  .home-profile{
+  margin-bottom:20px;
+}
+
+.home-profile img{
+  width:120px;
+  height:120px;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid var(--line);
+  box-shadow: 0 10px 25px rgba(0,0,0,.3);
+}
   /* ===== Responsive ===== */
   @media (max-width: 900px){
     .hero, .contact{grid-template-columns: 1fr}
@@ -450,6 +462,9 @@
     <section id="home">
       <div class="wrap hero">
         <div class="card left reveal">
+          <div class="home-profile">
+    <img src="profile.jpg" alt="프로필 사진">
+  </div>
           <div class="kicker">Backend Developer</div>
           <h1>이현아</h1>
           <p class="lead">
@@ -586,7 +601,7 @@
         <div class="projects-grid">
           <!-- V!VA PARK -->
           <div class="card p-card reveal" data-modal="vivapark">
-            <img class="thumb" src="viva_event_resv.png" alt="V!VA PARK 예약 화면">
+            <img class="thumb" src="viva_thum_img.png" alt="V!VA PARK 예약 화면">
             <div class="p-title">V!VA PARK <span class="badge">JSP/Servlet</span></div>
             <div class="p-desc">테마파크 공연/행사 조회와 예약, 관리자 운영 기능을 포함한 웹 서비스</div>
             <div class="badges">
@@ -601,6 +616,7 @@
 
           <!-- PIBUPIBU -->
           <div class="card p-card reveal" data-modal="pibupibu">
+            <img class="thumb" src="pibu_thum_img.png" alt="V!VA PARK 예약 화면">
             <div class="p-title">PIBUPIBU <span class="badge">JSP MVC</span></div>
             <div class="p-desc">주문·결제·쿠폰·문의 기능과 관리자 운영 기능을 포함한 쇼핑몰 웹 서비스</div>
             <div class="badges">
@@ -615,6 +631,7 @@
 
           <!-- NOIR -->
           <div class="card p-card reveal" data-modal="noir">
+            <img class="thumb" src="noir_thum_img.png" alt="V!VA PARK 예약 화면">
             <div class="p-title">NOIR <span class="badge">Spring Boot</span></div>
             <div class="p-desc">호텔 및 다이닝 예약/결제 중심의 Spring Boot 기반 웹 서비스</div>
             <div class="badges">
@@ -665,7 +682,7 @@
             </div>
             <div class="field" style="margin-top:12px;">
               <label>Email</label>
-              <div class="value">your_email@gmail.com</div>
+              <div class="value">ih9974407@gmail.com</div>
             </div>
             <div class="field" style="margin-top:12px;">
               <label>GitHub</label>
@@ -725,7 +742,11 @@
     vivapark: {
       title: "V!VA PARK",
       sub: "JSP/Servlet 기반 테마파크 공연/행사 예약 & 운영 관리 웹 서비스",
-      images: ["viva_event_resv.png"],
+      images: [
+        "viva_event_resv.png",
+        "viva_resc_detail.png",
+        "viva_resv.png",
+      ],
       left: {
         h: "핵심 기능",
         items: [
@@ -756,6 +777,11 @@
     pibupibu: {
       title: "PIBUPIBU",
       sub: "JSP MVC 기반 쇼핑몰 주문·결제·쿠폰·문의 웹 서비스",
+      images: [
+        "pibu_game_img.png",
+        "pibu_item_img.png",
+        "pibu_type_img.png",
+      ],
       left: {
         h: "사용자 기능",
         items: [
@@ -787,6 +813,11 @@
     noir: {
       title: "NOIR",
       sub: "Spring Boot + MyBatis 기반 호텔/다이닝 예약·결제 웹 서비스",
+      images: [
+        "noir_login_img.png",
+        "noir_notice_img.png",
+        "noir_review_img.png",
+      ],
       left: {
         h: "사용자 기능",
         items: [
