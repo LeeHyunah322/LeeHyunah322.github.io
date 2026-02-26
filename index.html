@@ -1,34 +1,137 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>Lee Hyunah Portfolio</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #f5f7fa, #c3cfe2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .container {
-      text-align: center;
-    }
-    h1 {
-      font-size: 50px;
-    }
-    h2 {
-      color: #007bff;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Lee Hyunah Portfolio</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+  font-family:'Segoe UI', sans-serif;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+/* 공통 섹션 */
+section{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  padding:40px;
+}
+
+h1{font-size:60px;}
+h2{font-size:40px;margin-bottom:20px;}
+p{font-size:20px;margin-top:10px;}
+
+.btn{
+  margin-top:20px;
+  padding:12px 25px;
+  background:#007bff;
+  color:white;
+  text-decoration:none;
+  border-radius:25px;
+  transition:0.3s;
+}
+.btn:hover{
+  background:#0056b3;
+}
+
+/* 각 섹션 배경 */
+#home{
+  background:linear-gradient(to right,#f5f7fa,#c3cfe2);
+}
+#about{
+  background:#f8f9fa;
+}
+#skills{
+  background:#e9ecef;
+}
+#project{
+  background:#dee2e6;
+}
+#contact{
+  background:#ced4da;
+}
+
+/* 애니메이션 */
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>이현아 (Lee Hyunah)</h1>
-    <h2>Backend Developer</h2>
-    <p>Spring Boot | JSP | Oracle | MyBatis</p>
-  </div>
+
+<section id="home">
+  <h1 class="fade">이현아</h1>
+  <h2 class="fade">Backend Developer</h2>
+  <p class="fade">Spring Boot · JSP · Oracle · MyBatis</p>
+  <a href="#about" class="btn">Scroll Down ↓</a>
+</section>
+
+<section id="about">
+  <h2 class="fade">About Me</h2>
+  <p class="fade">
+    MVC 구조 기반의 웹 애플리케이션을 설계하고 구현합니다.<br>
+    예약·결제·공지·문의 기능을 포함한 실서비스 구조를 경험했습니다.
+  </p>
+</section>
+
+<section id="skills">
+  <h2 class="fade">Skills</h2>
+  <p class="fade">Backend : Spring Boot / JSP / Servlet</p>
+  <p class="fade">Database : Oracle / SQL</p>
+  <p class="fade">Frontend : HTML / CSS / JS / jQuery</p>
+  <p class="fade">Version : Git / GitHub</p>
+</section>
+
+<section id="project">
+  <h2 class="fade">Project - VIVAPARK</h2>
+  <p class="fade">
+    놀이공원 예약·결제·운영 관리 시스템 구현
+  </p>
+  <p class="fade">
+    ✔ 예약 및 결제 프로세스 구현<br>
+    ✔ 관리자 공지·문의 관리 기능 개발<br>
+    ✔ JSP 기반 MVC 구조 설계
+  </p>
+  <a href="https://github.com/LeeHyunah322/vivapark" class="btn">GitHub 보기</a>
+</section>
+
+<section id="contact">
+  <h2 class="fade">Contact</h2>
+  <p class="fade">Email : your_email@gmail.com</p>
+  <p class="fade">GitHub : LeeHyunah322</p>
+</section>
+
+<script>
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+});
+
+document.querySelectorAll('.fade').forEach(el=>{
+  observer.observe(el);
+});
+</script>
+
 </body>
 </html>
