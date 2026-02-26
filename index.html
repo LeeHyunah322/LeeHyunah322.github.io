@@ -378,6 +378,71 @@
   border:2px solid var(--line);
   box-shadow: 0 10px 25px rgba(0,0,0,.3);
 }
+
+
+  /* ===== Modal Links ===== */
+.modal-links{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin: 0 0 12px 0;
+}
+
+/* ===== Lightbox ===== */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,.75);
+  backdrop-filter: blur(6px);
+  z-index:120;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+.lightbox.show{display:flex;}
+.lightbox-inner{
+  width:min(1100px, 96vw);
+  max-height: 90vh;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background: rgba(16,26,46,.92);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+  position:relative;
+}
+.lightbox-img{
+  width:100%;
+  height: calc(90vh - 64px);
+  object-fit: contain;
+  background: rgba(0,0,0,.25);
+  display:block;
+}
+.lightbox-bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 14px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-weight:800;
+  font-size:13px;
+}
+.lb-btn{
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.05);
+  color:var(--text);
+  border-radius:12px;
+  padding:10px 12px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.2s;
+}
+.lb-btn:hover{background: rgba(255,255,255,.09)}
+.lb-left{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.lb-cap{opacity:.9}
+  
   /* ===== Responsive ===== */
   @media (max-width: 900px){
     .hero, .contact{grid-template-columns: 1fr}
@@ -387,6 +452,7 @@
   .gallery img{height:220px;}
     .two{grid-template-columns: 1fr}
   }
+  
 </style>
 </head>
 
@@ -606,8 +672,8 @@
         </div>
 
         <p class="lead reveal" style="margin-top:14px;">
-          * 퍼센트는 숙련도를 수치로 과장하기보다는, 실제 사용 빈도와 구현 경험을 기준으로 표시했습니다.
-        </p>
+  * 수치는 숙련도 과장이 아닌 <b>사용 빈도/구현 경험</b> 기준입니다.
+</p>
       </div>
     </section>
 
@@ -697,7 +763,7 @@
               포트폴리오를 봐주셔서 감사합니다. 프로젝트 상세/코드 리뷰 요청도 환영합니다.
             </p>
             <div class="btn-row">
-              <a class="btn primary" href="mailto:your_email@gmail.com">메일 보내기</a>
+              <a class="btn primary" href="mailto:ih9974407@gmail.com">메일 보내기</a>
               <a class="btn" href="https://github.com/LeeHyunah322" target="_blank" rel="noopener">GitHub</a>
             </div>
           </div>
@@ -775,6 +841,10 @@
         "viva_resc_detail.png",
         "viva_resv.png",
       ],
+      links: [
+    { label: "PPT 보기", url: "https://www.canva.com/design/DAG7pyA14ks/re47L6ULVThD0RMeci00xw/edit?utm_content=DAG7pyA14ks&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" },
+    { label: "GitHub", url: "https://github.com/LeeHyunah322/vivapark" }
+  ],
       left: {
         h: "핵심 기능",
         items: [
@@ -811,6 +881,9 @@
         "pibu_item_img.png",
         "pibu_type_img.png",
       ],
+      links: [
+    { label: "GitHub", url: "https://github.com/LeeHyunah322/PIBUPIBU" }
+  ],
       left: {
         h: "사용자 기능",
         items: [
@@ -848,6 +921,10 @@
         "noir_notice_img.png",
         "noir_review_img.png",
       ],
+      links: [
+    { label: "PPT 보기", url: "https://docs.google.com/presentation/d/1WFvd2kB2KY17aSZiJ6xVyNR1c29-EZ9XfzYSWt_ccG8/edit?usp=sharing" },
+    { label: "GitHub", url: "https://github.com/junwon-le/noir_prj" }
+  ],
       left: {
         h: "사용자 기능",
         items: [
@@ -892,8 +969,21 @@
   ? `<div class="box" style="margin-bottom:12px;">
        <h4>Preview</h4>
        <div class="gallery">
-         ${d.images.map(src => `<img src="${src}" alt="${d.title} 이미지">`).join("")}
+        ${d.images.map((src, i) => `
+  <img class="lb-open" data-key="${key}" data-idx="${i}"
+       src="${src}" alt="${d.title} 이미지 ${i+1}">
+`).join("")}
        </div>
+     </div>`
+  : "";
+    const links = (d.links && d.links.length)
+  ? `<div class="modal-links">
+      ${d.links.map(l => `
+        <a class="btn ${l.label.includes('PPT') || l.label.includes('PDF') ? 'primary' : ''}"
+           href="${l.url}" target="_blank" rel="noopener">
+          ${l.label}
+        </a>
+      `).join("")}
      </div>`
   : "";
     modalTitle.textContent = d.title;
@@ -901,6 +991,7 @@
 
     modalBody.innerHTML = `
     ${gallery}
+     ${links}
       <div class="two">
         <div class="box">
           <h4>${d.left.h}</h4>
@@ -920,6 +1011,7 @@
     backdrop.style.display = "flex";
     backdrop.setAttribute("aria-hidden","false");
     document.body.style.overflow = "hidden";
+    
   }
 
   function closeModal(){
@@ -936,19 +1028,99 @@
   backdrop.addEventListener("click", (e)=>{ if(e.target === backdrop) closeModal(); });
   document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeModal(); });
 
-  // ===== Optional: keyboard scroll snap (wheel smoothing) =====
-  // 기본 scroll-snap이 충분히 동작하지만, 트랙패드/휠에서 더 또렷하게 넘기고 싶으면 활성화
-  // (너무 강하게 느껴지면 아래 블록을 주석처리해도 됨)
+  
   let isSnapping = false;
   const main = document.querySelector("main");
   main.addEventListener("wheel", (e)=>{
     if(isSnapping) return;
-    // 섹션 스냅을 좀 더 또렷하게: 큰 스크롤 입력에만 반응
+
     if(Math.abs(e.deltaY) < 18) return;
     isSnapping = true;
     setTimeout(()=>isSnapping=false, 500);
   }, {passive:true});
-</script>
 
+  // ===== Lightbox Logic =====
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const lbCap = document.getElementById("lbCap");
+const lbClose = document.getElementById("lbClose");
+const lbPrev = document.getElementById("lbPrev");
+const lbNext = document.getElementById("lbNext");
+
+let lbKey = null;
+let lbIdx = 0;
+
+function openLightbox(key, idx){
+  const d = modalData[key];
+  if(!d || !d.images || !d.images.length) return;
+
+  lbKey = key;
+  lbIdx = Math.max(0, Math.min(idx, d.images.length - 1));
+
+  lightboxImg.src = d.images[lbIdx];
+  lbCap.textContent = `${d.title} · ${lbIdx + 1} / ${d.images.length}`;
+
+  lightbox.classList.add("show");
+  lightbox.setAttribute("aria-hidden","false");
+}
+
+function closeLightbox(){
+  lightbox.classList.remove("show");
+  lightbox.setAttribute("aria-hidden","true");
+  lightboxImg.src = "";
+  lbKey = null;
+  lbIdx = 0;
+}
+
+function stepLightbox(dir){
+  const d = modalData[lbKey];
+  if(!d) return;
+
+  lbIdx += dir;
+  if(lbIdx < 0) lbIdx = d.images.length - 1;
+  if(lbIdx >= d.images.length) lbIdx = 0;
+
+  lightboxImg.src = d.images[lbIdx];
+  lbCap.textContent = `${d.title} · ${lbIdx + 1} / ${d.images.length}`;
+}
+
+// 모달 내 이미지 클릭 → 라이트박스
+modalBody.addEventListener("click", (e)=>{
+  const img = e.target.closest(".lb-open");
+  if(!img) return;
+  openLightbox(img.dataset.key, parseInt(img.dataset.idx || "0", 10));
+});
+
+lbClose.addEventListener("click", closeLightbox);
+lbPrev.addEventListener("click", ()=>stepLightbox(-1));
+lbNext.addEventListener("click", ()=>stepLightbox(1));
+
+// 바깥 클릭 닫기
+lightbox.addEventListener("click", (e)=>{
+  if(e.target === lightbox) closeLightbox();
+});
+
+// ESC/좌우키
+document.addEventListener("keydown", (e)=>{
+  if(!lightbox.classList.contains("show")) return;
+  if(e.key === "Escape") closeLightbox();
+  if(e.key === "ArrowLeft") stepLightbox(-1);
+  if(e.key === "ArrowRight") stepLightbox(1);
+});
+</script>
+<!-- ===== Lightbox ===== -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-inner" role="dialog" aria-modal="true">
+    <img id="lightboxImg" class="lightbox-img" src="" alt="확대 이미지">
+    <div class="lightbox-bar">
+      <div class="lb-left">
+        <button class="lb-btn" id="lbPrev" type="button">←</button>
+        <button class="lb-btn" id="lbNext" type="button">→</button>
+        <span class="lb-cap" id="lbCap"></span>
+      </div>
+      <button class="lb-btn" id="lbClose" type="button">닫기</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
