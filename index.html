@@ -737,19 +737,24 @@
             </ul>
           </div>
 
-          <!-- Optional: More card placeholder -->
-          <div class="card p-card soft reveal" style="cursor:default">
-            <div class="p-title">Next</div>
-            <div class="p-desc">API 문서(Swagger), 테스트(JUnit), 배포(CI/CD) 영역을 확장하며 성장 중입니다.</div>
-            <div class="badges">
-              <span class="badge">Testing</span><span class="badge">Documentation</span><span class="badge">Deployment</span>
-            </div>
-            <ul class="bullets">
-              <li>구조적 개선과 품질(테스트/문서화)에 대한 학습을 이어가고 있습니다.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+          <!-- React Mini Game -->
+<div class="card p-card soft reveal" data-modal="reactgame">
+  <div class="p-title">React Mini Game <span class="badge">React</span></div>
+  <div class="p-desc">
+    React로 제작한 미니게임 프로젝트로, 두더지 잡기와 방향키 장애물 피하기 게임을 구현했습니다.
+  </div>
+  <div class="badges">
+    <span class="badge">React</span>
+    <span class="badge">Vite</span>
+    <span class="badge">localStorage</span>
+    <span class="badge">Vercel</span>
+  </div>
+  <ul class="bullets">
+    <li>useState, useEffect, useRef를 활용한 게임 상태 관리</li>
+    <li>키보드/모바일 버튼 입력, 충돌 판정, 아이템 효과 구현</li>
+    <li>GitHub 업로드 및 Vercel 배포 완료</li>
+  </ul>
+</div>
     </section>
 
     <!-- CONTACT -->
@@ -965,7 +970,44 @@
           "Git/GitHub 형상 관리로 협업 기반 개발 환경 구성",
         ]
       }
-    }
+    },
+    reactgame: {
+  title: "React Mini Game",
+  sub: "React 기반 미니게임 프로젝트",
+  images: [],
+  links: [
+    { label: "GitHub", url: "https://github.com/LeeHyunah322/react-mini-game" },
+    { label: "배포 링크", url: "https://react-mini-game-lovat.vercel.app/" }
+  ],
+  left: {
+    h: "주요 기능",
+    items: [
+      "두더지 잡기 게임 구현",
+      "방향키 장애물 피하기 게임 구현",
+      "점수, 목숨, 아이템, 게임오버 상태 관리",
+      "localStorage 기반 최고점수 저장",
+      "모바일 조작 버튼 및 반응형 UI 적용"
+    ]
+  },
+  right: {
+    h: "구현 포인트",
+    items: [
+      "useState를 활용한 게임 상태 관리",
+      "useEffect를 활용한 타이머 및 반복 로직 처리",
+      "useRef를 활용한 실시간 키 입력 및 충돌 판정 관리",
+      "컴포넌트 분리를 통한 코드 구조 개선"
+    ]
+  },
+  more: {
+    h: "기술/배포",
+    items: [
+      "React + Vite 기반 프로젝트 구성",
+      "GitHub를 활용한 형상관리",
+      "Vercel을 통한 정적 웹 배포",
+      "현재도 UI 개선 및 새로운 게임 추가 개발 진행 중"
+    ]
+  }
+}
   };
 
   // ===== Modal Open/Close =====
