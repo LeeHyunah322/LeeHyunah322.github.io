@@ -442,6 +442,37 @@
 .lb-btn:hover{background: rgba(255,255,255,.09)}
 .lb-left{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .lb-cap{opacity:.9}
+
+  .intro-bg-glow {
+        position: absolute;
+        width: 140%;
+        height: 140%;
+        top: -20%;
+        left: -20%;
+        background: 
+          radial-gradient(circle at 20% 30%, rgba(110,168,254,0.18) 0%, transparent 45%),
+          radial-gradient(circle at 80% 70%, rgba(124,240,214,0.15) 0%, transparent 45%);
+        filter: blur(60px);
+        animation: glowMove 12s ease infinite alternate;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* 배경 서서히 움직이는 애니메이션 */
+      @keyframes glowMove {
+        0% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(2%, 4%) scale(1.05); }
+        100% { transform: translate(-2%, -2%) scale(0.98); }
+      }
+
+      /* 스크롤 마우스 휠 부드러운 애니메이션 */
+      @keyframes wheel {
+        0% { transform: translate(-50%, 0); opacity: 0; }
+        15% { opacity: 1; }
+        50% { transform: translate(-50%, 18px); opacity: 1; }
+        85% { opacity: 0; }
+        100% { transform: translate(-50%, 0); opacity: 0; }
+      }
   
   /* ===== Responsive ===== */
   @media (max-width: 900px){
@@ -471,59 +502,91 @@
   </div>
 
   <main>
-    <section id="intro">
-  <div class="wrap" style="text-align:center;">
-    <div class="reveal">
-      <div class="kicker" style="margin-bottom:10px;">Backend Developer</div>
-      <h1 style="
-        font-size: clamp(52px, 10vw, 120px);
-        font-weight: 1000;
-        letter-spacing: -0.04em;
-        margin-bottom: 12px;
-        background: linear-gradient(135deg, var(--accent), var(--accent2));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      ">이현아</h1>
-      <p class="lead" style="max-width:780px;margin:0 auto;">
-        구조와 흐름을 이해하고, 실제 서비스 운영 관점까지 고려하여 구현합니다.
-      </p>
+    <!-- INTRO -->
+    <section id="intro" style="position: relative; overflow: hidden;">
+      <!-- 부드러운 배경 무빙을 위한 백그라운드 효과 추가 -->
+      <div class="intro-bg-glow"></div>
 
-      <div class="btn-row" style="justify-content:center;">
-        <a class="btn primary" href="#home">Start ↓</a>
-        <a class="btn" href="#projects">Projects</a>
-      </div>
+      <div class="wrap" style="text-align:center; position: relative; z-index: 2;">
+        <div class="reveal">
+          <!-- 상단 배지 스타일 업그레이드 -->
+          <div class="pill" style="margin: 0 auto 24px auto; background: rgba(110, 168, 254, 0.1); border-color: rgba(110, 168, 254, 0.3); color: var(--accent);">
+            <span class="dot"></span> Backend Developer Portfolio
+          </div>
 
-      <div style="margin-top:26px; opacity:.9;">
-        <div style="
-          width:26px;height:44px;border-radius:20px;
-          border:1px solid var(--line);
-          margin:0 auto;
-          position:relative;
-          background: rgba(255,255,255,.04);
-        ">
-          <span style="
-            position:absolute;left:50%;top:10px;
-            width:6px;height:6px;border-radius:50%;
-            transform:translateX(-50%);
+          <!-- 메인 타이틀 & 그라데이션 텍스트 -->
+          <h1 style="
+            font-size: clamp(56px, 11vw, 110px);
+            font-weight: 1000;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 16px;
             background: linear-gradient(135deg, var(--accent), var(--accent2));
-            animation: wheel 1.2s infinite;
-          "></span>
-        </div>
-        <div style="color:var(--muted);font-weight:800;font-size:12px;margin-top:10px;letter-spacing:.08em;">
-          SCROLL
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(110,168,254,0.15);
+          ">이현아</h1>
+
+          <!-- 서브타이틀 강조 처리 -->
+          <p class="lead" style="
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: clamp(16px, 2.5vw, 21px);
+            line-height: 1.6;
+            color: var(--text);
+            font-weight: 500;
+            word-break: keep-all;
+          ">
+            구조와 흐름을 이해하고, <br style="display: none;"/>
+            <span style="
+              background: linear-gradient(120deg, rgba(110,168,254,0.2) 0%, rgba(124,240,214,0.2) 100%);
+              border-bottom: 2px solid var(--accent2);
+              padding-bottom: 2px;
+            ">실제 서비스 운영 관점</span>까지 고려하여 구현합니다.
+          </p>
+
+          <!-- 버튼 레이아웃 간격 및 호버 효과 강화 -->
+          <div class="btn-row" style="justify-content:center; margin-top: 36px; gap: 14px;">
+            <a class="btn primary" href="#home" style="padding: 14px 28px; font-size: 15px; letter-spacing: 0.5px;">
+              시작하기 <span style="margin-left: 4px;">↓</span>
+            </a>
+            <a class="btn" href="#projects" style="padding: 14px 28px; font-size: 15px;">
+              프로젝트 보기
+            </a>
+          </div>
+
+          <!-- 스크롤 유도 영역 디자인 정밀화 -->
+          <div style="margin-top:64px; opacity:.85;">
+            <div style="
+              width:28px; height:46px; border-radius:20px;
+              border:2px solid rgba(255,255,255,.15);
+              margin:0 auto;
+              position:relative;
+              background: rgba(16, 26, 46, 0.6);
+            ">
+              <span style="
+                position:absolute; left:50%; top:8px;
+                width:6px; height:6px; border-radius:50%;
+                transform:translateX(-50%);
+                background: linear-gradient(135deg, var(--accent), var(--accent2));
+                box-shadow: 0 0 10px var(--accent);
+                animation: wheel 1.6s cubic-bezier(0.19, 1, 0.22, 1) infinite;
+              "></span>
+            </div>
+            <div style="
+              color:var(--muted);
+              font-weight:900;
+              font-size:11px;
+              margin-top:12px;
+              letter-spacing:.15em;
+              text-indent: 0.15em; /* 글자 자간 균형 맞추기 */
+            ">
+              SCROLL DOWN
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<style>
-@keyframes wheel{
-  0%{transform:translate(-50%,0); opacity:1;}
-  70%{transform:translate(-50%,14px); opacity:.25;}
-  100%{transform:translate(-50%,0); opacity:1;}
-}
-</style>
+    </section>
     <!-- HOME -->
     <section id="home">
       <div class="wrap hero">
